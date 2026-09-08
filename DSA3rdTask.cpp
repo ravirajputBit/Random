@@ -1,31 +1,27 @@
 #include <iostream>
+#include <vector>
+#include <map>
 using namespace std;
 
 int main() {
-    int t;
-    cout <<"Number of test case: ";
-    cin >> t;
-    while (t--) {
-        int n;
-        cout <<"Enter n: ";
-        cin >> n;
-        int neg = 0, zero = 0;
-        for (int i = 0; i < n; i++) {
-            int x;
-            cin >> x;
-            if (x == -1) neg++;
-            if (x == 0) zero++;
-        }
-
-        int ans;
-        if (neg % 2 == 0) {
-            ans = zero;
-        }
-        else {
-            ans = zero + 2;
-        }
-
-        cout <<"answer is: "<< ans << endl;
+    int n, k;
+    cin>>n>>k;
+    vector<int> v(n);
+    for(int x : v){
+        cin>>x;
+        v.push_back(x);
     }
-    return 0;
+    
+    unordered_map<int, int> m;
+    m[0] = 1;
+    int prSm = 0;
+    int ans = 0;
+    for(int a : v){
+        prSm += a;
+        if(m.count(prSm-k)){
+            ans += m[prSm-k];
+        }
+        m[prSm]++;
+    }
+    cout<<ans;
 }
