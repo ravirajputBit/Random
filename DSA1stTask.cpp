@@ -1,20 +1,25 @@
 #include <iostream>
+#include <stack>
 using namespace std;
-
-int main() {
-    int t;
-    cout <<"Number of test case: ";
-    cin >> t;
-    while (t--) {
-        int x, n;
-        cout <<"Enter x: ";
-        cin >> x;
-        cout <<"Enter length(n): ";
-        cin >> n;
-        if (n % 2 == 0)
-            cout << 0 << endl;
-        else
-            cout << x << endl;
+int main(){
+    string s;
+    cin>>s;
+    stack<char>st;
+    for(int i=0; i<s.length(); i++){
+        if(s[i] == '(' || s[i] == '{' || s[i] == '[')
+        st.push(s[i]);
+        else{
+            if(st.empty())
+            cout<<"NO";
+            char top = st.top();
+            if((s[i] == ')' && top == '(') || (s[i] == '}' && top == '{') || (s[i] == ']' && top == '[')){
+                st.pop();
+            }else{
+                cout<<"NO";
+            }
+        }
     }
-    return 0;
+    if(st.empty())
+        cout<<"YES";
+    cout<<"NO";
 }
