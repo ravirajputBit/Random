@@ -1,20 +1,25 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <functional>
 using namespace std;
 
 int main() {
-    int t;
-    cout <<"Number of test case: ";
-    cin >> t;
-    while (t--) {
-        string a, b, c;
-        cout <<"Enter acient name: ";
-        cin >> a >> b >> c;
-        // Concatenate first letters of each word
-        string modern_name = "";
-        modern_name += a[0];
-        modern_name += b[0];
-        modern_name += c[0];
-        cout << modern_name << endl;
+    int n;
+    cin>>n;
+    vector<int> v(n);
+    for(int x : v){
+        cin>>x;
+        v.push_back(x);
     }
-    return 0;
+    sort(v.begin(), v.end(), greater<int>());
+    bool f = false;
+    for(int i=0; i<n-1; i++){
+        if(v[i] != v[i+1]){
+            f = true;
+            cout<<v[i];
+            break;
+        }  
+    }
+    if(!f) cout<<-1;
 }
